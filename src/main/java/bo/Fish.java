@@ -1,7 +1,10 @@
 package bo;
 
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 
+@Entity
 public class Fish extends Animal {
 
     private FishLivEnv livingEnv;

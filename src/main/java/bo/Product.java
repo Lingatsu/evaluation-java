@@ -1,7 +1,7 @@
 package bo;
 
 import jakarta.persistence.*;
-
+//Importation des librairies pour utiliser les méthodes Set et Hashset
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +16,7 @@ public class Product {
     private String code;
     @Column(name = "ETIQUETTE")
     private String label;
+//    @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
     private ProdType type;
     @Column(name = "PRIX")

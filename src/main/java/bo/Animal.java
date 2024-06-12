@@ -1,7 +1,7 @@
 package bo;
 
 import jakarta.persistence.*;
-
+//Importation de la librairie permettant d'utiliser l'objet LocalDate
 import java.time.LocalDate;
 
 @Entity

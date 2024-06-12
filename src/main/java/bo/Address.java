@@ -1,13 +1,19 @@
+// Importation des différentes classes constituant le package bo
 package bo;
-
+//Importation de tout le contenue de la librairie jakarta.persistence
 import jakarta.persistence.*;
 
+// Definition de la classe comme entité JPA
 @Entity
-@Table(name="ADRESSE")
+// Définition du nom de la table
+@Table(name = "ADRESSE")
 public class Address {
     @Id
+    // Génération automatique de l'ID
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // Crée plusieurs colonnes dans table adresse de la base de donnée dont une nommée ID
     @Column(name = "ID")
+    // Le contenue de cette colonne sera une variable privé nommé id de type long int
     private Long id;
     @Column(name = "NUMERO")
     private String number;
@@ -20,9 +26,10 @@ public class Address {
     @OneToOne(mappedBy = "adresse")
     private PetStore petStore;
 
+    // Constructeur vide pour instancier les objets
     public Address() {
     }
-
+    // Constructeur plein pour initialiser les objets
     public Address(String number, String street, String zipcode, String city) {
         this.number = number;
         this.street = street;
@@ -30,6 +37,7 @@ public class Address {
         this.city = city;
     }
 
+    // Getters and setters : permettent de récupérer et de définir des valeurs
     public String getNumber() {
         return number;
     }
@@ -70,6 +78,7 @@ public class Address {
         this.petStore = petStore;
     }
 
+    // To string: permet de convertir les objets de type differents en string (chaine de caractère)
     @Override
     public String toString() {
         return "Address{" +

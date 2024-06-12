@@ -11,7 +11,11 @@ public class TestAnimalerie {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        Product croquette = new Product("12345","Croquetty",ProdType.FOOD,35.99);
+        Product litiere = new Product("98643","Litière",ProdType.CLEANING,12.99);
+        em.persist(litiere);
+        Product brosse = new Product("05847","Brosse",ProdType.ACCESSORY,5.99);
+        em.persist(brosse);
+        Product croquette = new Product("74680","Croquettes",ProdType.FOOD,35.99);
         em.persist(croquette);
 
         Address adresseSoleil = new Address("35","Rue des lions","34000","Montpellier");
@@ -23,23 +27,29 @@ public class TestAnimalerie {
 
         PetStore soleil = new PetStore("Soleil","Paul");
         soleil.setAdresse(adresseSoleil);
-        soleil.getProducts().add(croquette);
+        soleil.getProducts().add(litiere);
         em.persist(soleil);
         PetStore nuage = new PetStore("Nuage","Pierre");
         nuage.setAdresse(adresseNuage);
-        nuage.getProducts().add(croquette);
+        nuage.getProducts().add(brosse);
         em.persist(nuage);
         PetStore eau = new PetStore("Eau","Jacques");
         eau.setAdresse(adresseEau);
         eau.getProducts().add(croquette);
         em.persist(eau);
 
-        Animal jerry = new Animal(LocalDate.now(),"Marron", soleil);
-        em.persist(jerry);
-        Animal bugs = new Animal(LocalDate.now(),"Gris", nuage);
+        Cat tom = new Cat(LocalDate.parse("2008-08-11"),"Gris foncé", soleil, "78975");
+        em.persist(tom);
+        Animal bugs = new Animal(LocalDate.parse("2020-06-25"),"Gris", nuage);
         em.persist(bugs);
-        Animal nemo = new Animal(LocalDate.now(),"Orange", eau);
+        Fish nemo = new Fish(LocalDate.parse("2010-04-01"),"Orange", eau, FishLivEnv.SEA_WATER);
         em.persist(nemo);
+
+        PetStore extract = em.find(PetStore.class, 1);
+        if (null != extract) {
+            System.out.println("TEST" + extract.getAnimals());
+        }
+
 
         em.getTransaction().commit();
         em.close();
