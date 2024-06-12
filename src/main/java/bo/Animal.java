@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "ANIMAL")
+// Définition de l'héritage
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Animal {
     @Id
@@ -16,7 +17,7 @@ public class Animal {
     private LocalDate birth;
     @Column(name = "COULEUR")
     private String couleur;
-
+    // Relation ManyToOne bidirectionnelle avec la classe petStore
     @ManyToOne
     @JoinColumn(name = "ID_PETSTORE")
     private PetStore petStore;
@@ -28,6 +29,10 @@ public class Animal {
         this.birth = birth;
         this.couleur = couleur;
         this.petStore = petStore;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public LocalDate getBirth() {

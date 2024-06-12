@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import java.time.LocalDate;
 
 @Entity
+// Liaison de l'héritage
 public class Cat extends Animal {
     private String chipId;
 

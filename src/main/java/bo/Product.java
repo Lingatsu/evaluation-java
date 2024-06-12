@@ -16,12 +16,12 @@ public class Product {
     private String code;
     @Column(name = "ETIQUETTE")
     private String label;
-//    @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
     private ProdType type;
     @Column(name = "PRIX")
     private double price;
 
+    // Relation ManyToMany bidirectionnelle avec la classe PetStore
     @ManyToMany(mappedBy = "products")
     private Set<PetStore> petStore = new HashSet<>();
 

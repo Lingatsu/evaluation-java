@@ -16,18 +16,20 @@ public class PetStore {
     private String name;
     @Column(name = "NOM_MANAGER")
     private String managerName;
-
+    // Relation ManyToMany bidirectionnelle avec la classe Product
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    // Eager different de Lazy
+    // Création d'une table de jointure
     @JoinTable(name = "PROD_PET",
             joinColumns = @JoinColumn(name = "ID_PET", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ID_PROD", referencedColumnName = "ID")
     )
-    // plusieurs products pour un petstore
     private Set<Product> products = new HashSet<>();
+
+    // Relation OneToMany bidirectionnelle avec la classe PetStore
     @OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    // plusieurs animals pour un petstore
     private Set<Animal> animals = new HashSet<>();
+
+    // Relation OneToOne bidirectionnelle avec la classe Address
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ADRESSE")
     private Address adresse;

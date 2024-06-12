@@ -23,6 +23,7 @@ public class Address {
     private String zipcode;
     @Column(name = "VILLE")
     private String city;
+    // Relation OneToOne bidirectionnelle avec la classe PetStore
     @OneToOne(mappedBy = "adresse")
     private PetStore petStore;
 
